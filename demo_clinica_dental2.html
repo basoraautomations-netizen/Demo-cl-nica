@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clínica Dental Mediterrànea — Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f2137;
+  --teal:#0d7c6e;
+  --teal-light:#e6f4f1;
+  --gold:#c9a84c;
+  --cream:#f8f6f1;
+  --white:#ffffff;
+  --gray:#6b7280;
+  --gray-light:#f1f0ec;
+  --text:#1a2332;
+  --radius:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+/* DEMO BANNER */
+.demo-banner{background:var(--gold);color:var(--white);text-align:center;padding:10px 20px;font-size:13px;font-weight:500;position:sticky;top:0;z-index:999}
+.demo-banner span{background:rgba(255,255,255,0.2);border-radius:4px;padding:2px 8px;margin-right:6px}
+
+/* NAV */
+nav{background:var(--navy);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:36px;z-index:998}
+.nav-logo{color:var(--white);font-family:'Playfair Display',serif;font-size:20px;font-weight:600;letter-spacing:0.3px}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:14px;font-weight:400;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--teal);color:var(--white);border:none;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;transition:background .2s}
+.nav-cta:hover{background:#0a6558}
+
+/* HERO */
+.hero{background:var(--navy);min-height:92vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:80px 40px}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%, rgba(13,124,110,0.18) 0%, transparent 70%)}
+.hero-content{max-width:600px;position:relative;z-index:1}
+.hero-eyebrow{color:var(--gold);font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);font-weight:600;color:var(--white);line-height:1.15;margin-bottom:20px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{color:rgba(255,255,255,0.65);font-size:17px;line-height:1.7;margin-bottom:36px;font-weight:300}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:var(--teal);color:var(--white);border:none;padding:14px 28px;border-radius:var(--radius);font-size:15px;font-weight:500;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+.btn-primary:hover{background:#0a6558;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.3);padding:14px 28px;border-radius:var(--radius);font-size:15px;font-weight:400;cursor:pointer;transition:all .2s}
+.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,0.05)}
+.hero-stats{display:flex;gap:40px;margin-top:48px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.1)}
+.stat-num{font-family:'Playfair Display',serif;font-size:32px;color:var(--white);font-weight:600}
+.stat-label{color:rgba(255,255,255,0.5);font-size:12px;margin-top:2px}
+.hero-img{position:absolute;right:0;top:0;width:48%;height:100%;object-fit:cover;opacity:0.15}
+
+/* SECTIONS */
+section{padding:80px 40px}
+.section-label{color:var(--teal);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px}
+h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:600;color:var(--navy);line-height:1.2;margin-bottom:16px}
+.section-sub{color:var(--gray);font-size:16px;line-height:1.7;max-width:560px}
+
+/* TRATAMIENTOS */
+.tratamientos{background:var(--cream)}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:48px}
+.card{background:var(--white);border-radius:var(--radius);padding:28px;border:1px solid rgba(0,0,0,0.06);transition:all .25s;cursor:pointer}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(15,33,55,0.1);border-color:var(--teal)}
+.card-icon{width:48px;height:48px;background:var(--teal-light);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:22px}
+.card h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.card p{font-size:13px;color:var(--gray);line-height:1.6}
+.card-price{margin-top:14px;font-size:13px;font-weight:500;color:var(--teal)}
+
+/* CALCULADORA */
+.calculadora{background:var(--navy)}
+.calculadora h2{color:var(--white)}
+.calculadora .section-label{color:var(--gold)}
+.calculadora .section-sub{color:rgba(255,255,255,0.55)}
+.calc-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px;align-items:start}
+.calc-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:32px}
+.calc-group{margin-bottom:24px}
+.calc-group label{display:block;color:rgba(255,255,255,0.7);font-size:13px;margin-bottom:8px;font-weight:500}
+.calc-group select,.calc-group input[type=range]{width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--white);border-radius:8px;padding:10px 12px;font-size:14px;font-family:'Inter',sans-serif;cursor:pointer}
+.calc-group select option{background:var(--navy)}
+.range-val{color:var(--gold);font-weight:600;font-size:14px;margin-left:8px}
+.calc-result{background:var(--teal);border-radius:var(--radius);padding:32px;text-align:center}
+.result-label{color:rgba(255,255,255,0.7);font-size:13px;margin-bottom:6px}
+.result-price{font-family:'Playfair Display',serif;font-size:52px;color:var(--white);font-weight:600;line-height:1}
+.result-range{color:rgba(255,255,255,0.6);font-size:13px;margin-top:6px}
+.result-items{margin-top:24px;text-align:left}
+.result-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.15);font-size:13px;color:rgba(255,255,255,0.8)}
+.result-item:last-child{border:none}
+.result-cta{margin-top:24px;width:100%;background:var(--white);color:var(--teal);border:none;padding:14px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.result-cta:hover{background:var(--cream)}
+
+/* ANTES/DESPUÉS */
+.galeria{background:var(--cream)}
+.slider-container{position:relative;width:100%;max-width:600px;height:320px;border-radius:var(--radius);overflow:hidden;cursor:col-resize;user-select:none;margin:40px auto 0;box-shadow:0 8px 32px rgba(0,0,0,0.15)}
+.slider-before,.slider-after{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:80px}
+.slider-before{background:linear-gradient(135deg,#e8e0d4,#d4c9b8)}
+.slider-after{background:linear-gradient(135deg,#0f2137,#0d7c6e)}
+.slider-label{position:absolute;bottom:16px;font-size:12px;font-weight:600;letter-spacing:1px;color:rgba(255,255,255,0.9);background:rgba(0,0,0,0.4);padding:4px 10px;border-radius:20px}
+.slider-label.before{left:16px;color:rgba(0,0,0,0.6);background:rgba(255,255,255,0.6)}
+.slider-divider{position:absolute;top:0;bottom:0;width:3px;background:var(--white);z-index:3;cursor:col-resize}
+.slider-handle{position:absolute;top:50%;transform:translate(-50%,-50%);width:40px;height:40px;background:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.2);font-size:14px;z-index:4}
+.slider-clip{position:absolute;inset:0;overflow:hidden}
+
+/* TESTIMONIOS */
+.testimonios{background:var(--white)}
+.test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:48px}
+.test-card{background:var(--cream);border-radius:var(--radius);padding:28px;border-left:4px solid var(--teal)}
+.stars{color:var(--gold);font-size:16px;margin-bottom:12px}
+.test-card p{font-size:14px;color:var(--text);line-height:1.7;font-style:italic;margin-bottom:16px}
+.test-author{display:flex;align-items:center;gap:10px}
+.test-avatar{width:38px;height:38px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;color:var(--white);font-size:13px;font-weight:600}
+.test-name{font-size:13px;font-weight:600;color:var(--navy)}
+.test-role{font-size:12px;color:var(--gray)}
+
+/* URGENCIA POP (simulado en sección) */
+.urgencia{background:linear-gradient(135deg,#0f2137,#0d2a3a);text-align:center}
+.urgencia h2{color:var(--white)}
+.urgencia .section-sub{color:rgba(255,255,255,0.6);margin:0 auto 36px}
+.urgencia-card{background:rgba(255,255,255,0.06);border:1.5px solid var(--gold);border-radius:var(--radius);padding:32px;max-width:480px;margin:0 auto;text-align:center}
+.urgencia-emoji{font-size:48px;margin-bottom:16px}
+.urgencia-title{color:var(--white);font-family:'Playfair Display',serif;font-size:24px;margin-bottom:8px}
+.urgencia-sub{color:rgba(255,255,255,0.6);font-size:14px;margin-bottom:24px}
+.urgencia-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-urgente{background:#dc2626;color:var(--white);border:none;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer}
+.btn-normal{background:var(--teal);color:var(--white);border:none;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer}
+
+/* FORMULARIO */
+.formulario-section{background:var(--cream)}
+.form-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:start}
+.form-info h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--navy);margin-bottom:12px}
+.form-info p{color:var(--gray);font-size:14px;line-height:1.7;margin-bottom:20px}
+.form-feature{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:13px;color:var(--text)}
+.form-feature::before{content:'✓';background:var(--teal);color:var(--white);width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.form-box{background:var(--white);border-radius:var(--radius);padding:32px;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+.form-step{display:none}
+.form-step.active{display:block}
+.form-progress{display:flex;gap:6px;margin-bottom:24px}
+.prog-dot{height:4px;flex:1;background:#e5e7eb;border-radius:2px;transition:background .3s}
+.prog-dot.done{background:var(--teal)}
+.form-question{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:16px}
+.form-options{display:flex;flex-direction:column;gap:8px}
+.form-option{padding:12px 16px;border:1.5px solid #e5e7eb;border-radius:8px;cursor:pointer;font-size:14px;transition:all .2s;background:var(--white)}
+.form-option:hover,.form-option.selected{border-color:var(--teal);background:var(--teal-light);color:var(--navy)}
+.form-input{width:100%;padding:12px 14px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border .2s}
+.form-input:focus{border-color:var(--teal)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.form-field{margin-bottom:14px}
+.form-field label{display:block;font-size:12px;font-weight:500;color:var(--gray);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.urgency-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:12px}
+.urgency-alta{background:#fee2e2;color:#dc2626}
+.urgency-media{background:#fef3c7;color:#d97706}
+.urgency-baja{background:#d1fae5;color:#059669}
+.btn-form{width:100%;background:var(--teal);color:var(--white);border:none;padding:14px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;margin-top:16px;transition:background .2s}
+.btn-form:hover{background:#0a6558}
+.btn-back{background:none;border:none;color:var(--gray);font-size:13px;cursor:pointer;margin-top:8px;display:block;width:100%;text-align:center}
+
+/* CALENDARIO */
+.calendario-section{background:var(--white)}
+.cal-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:start}
+.cal-box{background:var(--cream);border-radius:var(--radius);padding:28px}
+.cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.cal-month{font-weight:600;font-size:15px;color:var(--navy)}
+.cal-nav{background:none;border:1px solid #e5e7eb;width:32px;height:32px;border-radius:6px;cursor:pointer;font-size:16px}
+.cal-days-header{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:8px}
+.cal-day-name{text-align:center;font-size:11px;font-weight:600;color:var(--gray);text-transform:uppercase}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:13px;cursor:pointer;transition:all .2s;border:1.5px solid transparent;position:relative}
+.cal-day.empty{cursor:default}
+.cal-day.past{color:#d1d5db;cursor:default}
+.cal-day.available{color:var(--navy)}
+.cal-day.available:hover{background:var(--teal-light);border-color:var(--teal)}
+.cal-day.urgent-slot{background:#fee2e2;color:#dc2626}
+.cal-day.urgent-slot:hover{background:#fca5a5}
+.cal-day.selected{background:var(--teal);color:var(--white);border-color:var(--teal)}
+.cal-day.today{font-weight:700;border-color:var(--gold)}
+.cal-legend{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--gray)}
+.legend-dot{width:12px;height:12px;border-radius:3px}
+.time-slots{margin-top:16px}
+.time-label{font-size:12px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.slots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.slot{padding:8px;border:1.5px solid #e5e7eb;border-radius:6px;text-align:center;font-size:12px;cursor:pointer;transition:all .2s}
+.slot:hover,.slot.selected{border-color:var(--teal);background:var(--teal-light);color:var(--navy)}
+.slot.taken{border-color:#f3f4f6;color:#d1d5db;cursor:default;text-decoration:line-through}
+.cal-confirm{background:var(--white);border-radius:var(--radius);padding:28px;border:1px solid rgba(0,0,0,0.06)}
+.cal-confirm h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:16px}
+.confirm-row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #f3f4f6;font-size:13px}
+.confirm-icon{font-size:18px}
+.ai-badge{background:linear-gradient(135deg,var(--teal),var(--navy));color:var(--white);border-radius:8px;padding:14px;margin-top:16px;font-size:13px;line-height:1.6}
+.ai-badge strong{display:block;margin-bottom:4px;font-size:14px}
+
+/* FAQ */
+.faq{background:var(--cream)}
+.faq-list{margin-top:48px;max-width:700px;margin-left:auto;margin-right:auto}
+.faq-item{background:var(--white);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;border:1px solid rgba(0,0,0,0.05)}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 22px;font-size:15px;font-weight:500;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif}
+.faq-arrow{transition:transform .3s;font-size:12px;color:var(--teal)}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-item.open .faq-a{max-height:200px}
+.faq-a p{padding:0 22px 18px;font-size:14px;color:var(--gray);line-height:1.7}
+
+/* FINANCIACIÓN */
+.financiacion{background:var(--white)}
+.fin-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:center}
+.fin-box{background:var(--cream);border-radius:var(--radius);padding:32px}
+.fin-group{margin-bottom:20px}
+.fin-group label{display:block;font-size:12px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.fin-slider{width:100%;accent-color:var(--teal)}
+.fin-value{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:var(--navy)}
+.cuotas-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.cuota-card{background:var(--white);border-radius:8px;padding:16px;text-align:center;border:1.5px solid #e5e7eb;cursor:pointer;transition:all .2s}
+.cuota-card:hover,.cuota-card.active{border-color:var(--teal);background:var(--teal-light)}
+.cuota-meses{font-size:11px;color:var(--gray);text-transform:uppercase;font-weight:600}
+.cuota-importe{font-size:22px;font-weight:700;color:var(--navy);margin:4px 0}
+.cuota-total{font-size:11px;color:var(--gray)}
+
+/* BOT WHATSAPP */
+.whatsapp-section{background:var(--navy)}
+.whatsapp-section h2{color:var(--white)}
+.whatsapp-section .section-label{color:#25d366}
+.whatsapp-section .section-sub{color:rgba(255,255,255,0.55)}
+.wa-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:start}
+.wa-phone{background:#1a1a2e;border-radius:24px;padding:16px;max-width:280px;margin:0 auto;border:6px solid #2d2d4e;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.wa-header{background:#075e54;border-radius:12px 12px 0 0;padding:12px 14px;display:flex;align-items:center;gap:10px}
+.wa-avatar{width:36px;height:36px;border-radius:50%;background:#128c7e;display:flex;align-items:center;justify-content:center;font-size:16px}
+.wa-name{color:var(--white);font-size:13px;font-weight:600}
+.wa-status{color:rgba(255,255,255,0.6);font-size:10px}
+.wa-chat{background:#ece5dd;border-radius:0 0 12px 12px;padding:12px;min-height:340px;display:flex;flex-direction:column;gap:8px}
+.wa-msg{max-width:80%;padding:8px 10px;border-radius:8px;font-size:11px;line-height:1.5;position:relative}
+.wa-msg.bot{background:var(--white);align-self:flex-start;border-radius:0 8px 8px 8px}
+.wa-msg.user{background:#dcf8c6;align-self:flex-end;border-radius:8px 0 8px 8px}
+.wa-msg .time{font-size:9px;color:rgba(0,0,0,0.4);display:block;text-align:right;margin-top:2px}
+.wa-typing{background:var(--white);padding:8px 12px;border-radius:0 8px 8px 8px;align-self:flex-start;display:none}
+.wa-typing span{display:inline-block;width:6px;height:6px;background:#aaa;border-radius:50%;animation:bounce .8s infinite;margin-right:2px}
+.wa-typing span:nth-child(2){animation-delay:.15s}
+.wa-typing span:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+.wa-input-area{background:#f0f0f0;padding:8px;border-radius:8px;display:flex;gap:6px;margin-top:6px}
+.wa-input{flex:1;background:var(--white);border:none;border-radius:16px;padding:6px 10px;font-size:11px;outline:none}
+.wa-send{background:#128c7e;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center}
+.wa-options{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.wa-option-btn{background:var(--white);border:1px solid #128c7e;color:#128c7e;border-radius:16px;padding:5px 10px;font-size:10px;cursor:pointer;text-align:center;transition:all .2s}
+.wa-option-btn:hover{background:#128c7e;color:var(--white)}
+.wa-features{display:flex;flex-direction:column;gap:16px}
+.wa-feature{display:flex;gap:14px;align-items:flex-start}
+.wa-feat-icon{width:44px;height:44px;background:rgba(37,211,102,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.wa-feat-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:3px}
+.wa-feat-sub{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.5}
+
+/* MAPA */
+.mapa-section{background:var(--cream)}
+.mapa-box{background:var(--white);border-radius:var(--radius);overflow:hidden;margin-top:40px;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+.mapa-placeholder{height:280px;background:linear-gradient(135deg,#e8f4fd,#d4eaf7);display:flex;align-items:center;justify-content:center;font-size:60px;position:relative}
+.mapa-pin{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);font-size:40px;animation:pin-bounce 2s ease-in-out infinite}
+@keyframes pin-bounce{0%,100%{transform:translate(-50%,-60%)}50%{transform:translate(-50%,-75%)}}
+.mapa-info{padding:20px 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mapa-data{text-align:center}
+.mapa-data-label{font-size:11px;color:var(--gray);text-transform:uppercase;font-weight:600;margin-bottom:4px}
+.mapa-data-val{font-size:14px;font-weight:600;color:var(--navy)}
+
+/* RESEÑAS AUTO */
+.resenas{background:var(--white)}
+.resena-flow{display:flex;align-items:center;gap:0;margin-top:48px;overflow-x:auto;padding-bottom:8px}
+.resena-step{flex:1;min-width:160px;text-align:center;position:relative}
+.resena-step::after{content:'→';position:absolute;right:-12px;top:28px;color:var(--teal);font-size:20px;font-weight:300}
+.resena-step:last-child::after{display:none}
+.resena-icon{font-size:40px;margin-bottom:10px}
+.resena-title{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.resena-sub{font-size:12px;color:var(--gray);line-height:1.5}
+
+/* CTA FINAL */
+.cta-final{background:linear-gradient(135deg,var(--teal) 0%,#075e54 100%);text-align:center;padding:80px 40px}
+.cta-final h2{color:var(--white);font-size:clamp(28px,4vw,46px);margin-bottom:16px}
+.cta-final p{color:rgba(255,255,255,0.75);font-size:16px;margin-bottom:36px}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-white{background:var(--white);color:var(--teal);border:none;padding:14px 32px;border-radius:var(--radius);font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,0.5);text-align:center;padding:28px 40px;font-size:13px}
+footer span{color:var(--gold)}
+
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;box-shadow:0 4px 16px rgba(37,211,102,0.4);z-index:997;transition:transform .2s;text-decoration:none}
+.wa-float:hover{transform:scale(1.1)}
+.wa-tooltip{position:absolute;right:68px;background:var(--navy);color:var(--white);font-size:12px;white-space:nowrap;padding:6px 12px;border-radius:6px;opacity:0;transition:opacity .2s;pointer-events:none}
+.wa-float:hover .wa-tooltip{opacity:1}
+
+/* URGENCIA POPUP */
+.urgencia-popup{position:fixed;bottom:96px;right:24px;background:var(--white);border-radius:var(--radius);box-shadow:0 8px 32px rgba(0,0,0,0.15);padding:20px;width:280px;z-index:996;transform:translateY(20px);opacity:0;transition:all .4s;pointer-events:none;border-top:4px solid #dc2626}
+.urgencia-popup.show{transform:translateY(0);opacity:1;pointer-events:auto}
+.popup-close{position:absolute;top:10px;right:12px;background:none;border:none;font-size:16px;cursor:pointer;color:var(--gray)}
+.popup-title{font-size:14px;font-weight:700;color:#dc2626;margin-bottom:4px}
+.popup-sub{font-size:12px;color:var(--gray);margin-bottom:12px;line-height:1.5}
+.popup-btn{width:100%;background:#dc2626;color:var(--white);border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  section{padding:60px 20px}
+  .hero{padding:60px 20px}
+  .calc-layout,.form-layout,.cal-layout,.wa-layout,.fin-layout{grid-template-columns:1fr}
+  .mapa-info{grid-template-columns:1fr}
+  .resena-flow{flex-direction:column;gap:24px}
+  .resena-step::after{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+  <span>🎯 DEMO</span>
+  Esta es una web de demostración — clínica ficticia · Todos los sistemas son funcionales
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Dental<span>Mediterrànea</span></div>
+  <ul class="nav-links">
+    <li><a href="#tratamientos">Tratamientos</a></li>
+    <li><a href="#calculadora">Precios</a></li>
+    <li><a href="#cita">Reservar cita</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('cita').scrollIntoView({behavior:'smooth'})">Pedir cita →</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Clínica Dental en Tarragona</div>
+    <h1>Tu sonrisa perfecta empieza <em>hoy</em></h1>
+    <p>Respuesta garantizada en menos de 2 minutos, a cualquier hora. Sin esperas, sin llamadas perdidas.</p>
+    <div class="hero-btns">
+      <a href="#cita" class="btn-primary">Reservar cita online</a>
+      <button class="btn-outline" onclick="openWaChat()">💬 WhatsApp directo</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">+2.400</div><div class="stat-label">Pacientes atendidos</div></div>
+      <div><div class="stat-num">4.9 ⭐</div><div class="stat-label">Google Reviews</div></div>
+      <div><div class="stat-num">24h</div><div class="stat-label">Atención online</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRATAMIENTOS -->
+<section class="tratamientos" id="tratamientos">
+  <div class="section-label">Nuestros servicios</div>
+  <h2>Tratamientos para cada necesidad</h2>
+  <p class="section-sub">Desde revisiones hasta transformaciones completas. Tecnología de última generación con el trato más humano.</p>
+  <div class="cards-grid">
+    <div class="card" onclick="selectTratamiento('implante')">
+      <div class="card-icon">🦷</div>
+      <h3>Implantes dentales</h3>
+      <p>Solución permanente para dientes perdidos. Funciona, se ve y se siente como un diente natural.</p>
+      <div class="card-price">Desde 950€ · Financiación disponible</div>
+    </div>
+    <div class="card" onclick="selectTratamiento('estetica')">
+      <div class="card-icon">✨</div>
+      <h3>Estética dental</h3>
+      <p>Carillas, blanqueamiento y diseño de sonrisa. Resultados visibles desde la primera sesión.</p>
+      <div class="card-price">Desde 250€ por pieza</div>
+    </div>
+    <div class="card" onclick="selectTratamiento('ortodoncia')">
+      <div class="card-icon">😁</div>
+      <h3>Ortodoncia invisible</h3>
+      <p>Alineadores transparentes que corrigen tu mordida sin que nadie lo note.</p>
+      <div class="card-price">Desde 2.400€ · Plan de pago sin intereses</div>
+    </div>
+    <div class="card" onclick="selectTratamiento('endodoncia')">
+      <div class="card-icon">🩺</div>
+      <h3>Endodoncia</h3>
+      <p>Salvamos tu diente natural evitando la extracción. Tratamiento indoloro con anestesia avanzada.</p>
+      <div class="card-price">Desde 350€</div>
+    </div>
+    <div class="card" onclick="selectTratamiento('periodoncia')">
+      <div class="card-icon">🌿</div>
+      <h3>Periodoncia</h3>
+      <p>Tratamiento de encías y hueso. Frenamos la enfermedad periodontal antes de que avance.</p>
+      <div class="card-price">Consulta de diagnóstico gratuita</div>
+    </div>
+    <div class="card" onclick="selectTratamiento('revision')">
+      <div class="card-icon">🔍</div>
+      <h3>Revisión + Limpieza</h3>
+      <p>Prevención que ahorra tratamientos futuros. Exploración completa con radiografías digitales.</p>
+      <div class="card-price">59€ · Primera visita gratuita</div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="calculadora" id="calculadora">
+  <div class="section-label">Calculadora de presupuesto</div>
+  <h2>Conoce el coste aproximado de tu tratamiento</h2>
+  <p class="section-sub">Obtén una estimación orientativa al instante. Sin compromiso, sin llamadas.</p>
+  <div class="calc-layout">
+    <div class="calc-box">
+      <div class="calc-group">
+        <label>¿Qué tratamiento necesitas?</label>
+        <select id="calc-tratamiento" onchange="calcular()">
+          <option value="revision">Revisión + Limpieza</option>
+          <option value="blanqueamiento">Blanqueamiento dental</option>
+          <option value="endodoncia">Endodoncia</option>
+          <option value="carilla">Carillas dentales</option>
+          <option value="implante">Implante dental</option>
+          <option value="ortodoncia">Ortodoncia invisible</option>
+        </select>
+      </div>
+      <div class="calc-group" id="piezas-group">
+        <label>Número de piezas: <span class="range-val" id="piezas-val">1</span></label>
+        <input type="range" min="1" max="8" value="1" id="calc-piezas" oninput="calcular()">
+      </div>
+      <div class="calc-group">
+        <label>Urgencia del tratamiento</label>
+        <select id="calc-urgencia" onchange="calcular()">
+          <option value="1">Sin urgencia — puedo esperar</option>
+          <option value="1.1">Moderada — en el próximo mes</option>
+          <option value="1.2">Alta — tengo molestias</option>
+        </select>
+      </div>
+      <div class="calc-group">
+        <label>¿Tienes seguro dental?</label>
+        <select id="calc-seguro" onchange="calcular()">
+          <option value="1">No tengo seguro</option>
+          <option value="0.85">Sí, seguro básico (-15%)</option>
+          <option value="0.7">Sí, seguro completo (-30%)</option>
+        </select>
+      </div>
+    </div>
+    <div class="calc-result">
+      <div class="result-label">Estimación orientativa</div>
+      <div class="result-price" id="result-price">59€</div>
+      <div class="result-range" id="result-range">Precio cerrado</div>
+      <div class="result-items" id="result-items"></div>
+      <button class="result-cta" onclick="document.getElementById('cita').scrollIntoView({behavior:'smooth'})">Solicitar presupuesto exacto →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ANTES/DESPUÉS -->
+<section class="galeria" id="galeria">
+  <div class="section-label">Casos reales</div>
+  <h2>Resultados que hablan por sí solos</h2>
+  <p class="section-sub">Desliza para ver la transformación. Todos los casos son de pacientes reales de nuestra clínica.</p>
+  <div class="slider-container" id="slider" onmousedown="startDrag(event)" ontouchstart="startDrag(event)">
+    <div class="slider-before" style="z-index:1">😬<span class="slider-label before">Antes</span></div>
+    <div class="slider-clip" id="slider-clip" style="z-index:2;width:50%;overflow:hidden">
+      <div class="slider-after" style="width:600px;max-width:600px">😁<span class="slider-label">Después</span></div>
+    </div>
+    <div class="slider-divider" id="slider-div" style="left:50%">
+      <div class="slider-handle">⇄</div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCIA WIDGET -->
+<section class="urgencia" id="urgencia">
+  <div class="section-label">Atención prioritaria</div>
+  <h2>¿Tienes dolor ahora mismo?</h2>
+  <p class="section-sub">No esperes. Nuestro sistema detecta urgencias y te asigna la primera cita disponible del día.</p>
+  <div class="urgencia-card">
+    <div class="urgencia-emoji">🚨</div>
+    <div class="urgencia-title">Canal de urgencias 24h</div>
+    <div class="urgencia-sub">Cuéntanos qué tienes y te llamamos en menos de 15 minutos</div>
+    <div class="urgencia-btns">
+      <button class="btn-urgente" onclick="activateUrgency()">🔴 Tengo dolor ahora</button>
+      <button class="btn-normal" onclick="document.getElementById('cita').scrollIntoView({behavior:'smooth'})">📅 Reservar cita normal</button>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULARIO IA -->
+<section class="formulario-section" id="contacto">
+  <div class="section-label">Formulario inteligente</div>
+  <h2>Cuéntanos qué necesitas</h2>
+  <p class="section-sub">Nuestro sistema analiza tu caso y te conecta con el especialista adecuado.</p>
+  <div class="form-layout">
+    <div class="form-info">
+      <h3>¿Por qué un formulario inteligente?</h3>
+      <p>A diferencia de un formulario tradicional, este sistema adapta las preguntas según tus respuestas y detecta automáticamente el nivel de urgencia de tu caso.</p>
+      <div class="form-feature">Preguntas adaptadas a tu situación</div>
+      <div class="form-feature">Detección automática de urgencia</div>
+      <div class="form-feature">Derivación al especialista correcto</div>
+      <div class="form-feature">Respuesta en menos de 2 horas</div>
+      <div class="form-feature">Disponible 24h, 365 días</div>
+    </div>
+    <div class="form-box">
+      <div class="form-progress">
+        <div class="prog-dot done" id="p1"></div>
+        <div class="prog-dot" id="p2"></div>
+        <div class="prog-dot" id="p3"></div>
+        <div class="prog-dot" id="p4"></div>
+      </div>
+      <!-- PASO 1 -->
+      <div class="form-step active" id="step1">
+        <div class="form-question">¿Cuál es tu situación principal?</div>
+        <div class="form-options">
+          <div class="form-option" onclick="selectOption(this,'dolor')">🔴 Tengo dolor o molestias</div>
+          <div class="form-option" onclick="selectOption(this,'estetica')">✨ Quiero mejorar mi sonrisa</div>
+          <div class="form-option" onclick="selectOption(this,'revision')">🔍 Necesito una revisión</div>
+          <div class="form-option" onclick="selectOption(this,'otro')">💬 Tengo otra consulta</div>
+        </div>
+        <button class="btn-form" onclick="nextStep(2)" id="btn-step1" style="opacity:.4;pointer-events:none">Siguiente →</button>
+      </div>
+      <!-- PASO 2 -->
+      <div class="form-step" id="step2">
+        <div class="form-question">¿Con qué urgencia necesitas atención?</div>
+        <div class="form-options">
+          <div class="form-option" onclick="selectOption(this,'hoy')">🚨 Lo antes posible (hoy/mañana)</div>
+          <div class="form-option" onclick="selectOption(this,'semana')">📅 Esta semana</div>
+          <div class="form-option" onclick="selectOption(this,'mes')">🗓️ Este mes</div>
+          <div class="form-option" onclick="selectOption(this,'noprisa')">😌 Sin prisa especial</div>
+        </div>
+        <button class="btn-form" onclick="nextStep(3)" id="btn-step2" style="opacity:.4;pointer-events:none">Siguiente →</button>
+        <button class="btn-back" onclick="nextStep(1)">← Atrás</button>
+      </div>
+      <!-- PASO 3 -->
+      <div class="form-step" id="step3">
+        <div class="form-question">¿Eres paciente nuestro?</div>
+        <div class="form-options">
+          <div class="form-option" onclick="selectOption(this,'si_paciente')">✅ Sí, ya soy paciente</div>
+          <div class="form-option" onclick="selectOption(this,'no_paciente')">👋 No, es mi primera vez</div>
+        </div>
+        <button class="btn-form" onclick="nextStep(4)" id="btn-step3" style="opacity:.4;pointer-events:none">Siguiente →</button>
+        <button class="btn-back" onclick="nextStep(2)">← Atrás</button>
+      </div>
+      <!-- PASO 4 -->
+      <div class="form-step" id="step4">
+        <div class="form-question">Tus datos de contacto</div>
+        <div class="form-row">
+          <div class="form-field"><label>Nombre</label><input class="form-input" type="text" placeholder="Tu nombre" id="f-nombre"></div>
+          <div class="form-field"><label>Teléfono</label><input class="form-input" type="tel" placeholder="6XX XXX XXX" id="f-tel"></div>
+        </div>
+        <div class="form-field"><label>Email</label><input class="form-input" type="email" placeholder="tu@email.com" id="f-email"></div>
+        <button class="btn-form" onclick="submitForm()">Enviar consulta →</button>
+        <button class="btn-back" onclick="nextStep(3)">← Atrás</button>
+      </div>
+      <!-- RESULTADO -->
+      <div class="form-step" id="step-result">
+        <div style="text-align:center;padding:20px 0">
+          <div style="font-size:52px;margin-bottom:12px">✅</div>
+          <h3 style="color:var(--navy);margin-bottom:8px;font-size:18px">Consulta recibida</h3>
+          <p style="color:var(--gray);font-size:14px;margin-bottom:16px">Hemos analizado tu caso automáticamente</p>
+          <div id="urgency-result"></div>
+          <p style="color:var(--gray);font-size:13px;margin-top:16px">Te contactamos en <strong>menos de 2 horas</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDARIO -->
+<section class="calendario-section" id="cita">
+  <div class="section-label">Reserva tu cita</div>
+  <h2>Elige el día y hora que mejor te vaya</h2>
+  <p class="section-sub">Nuestro sistema detecta la urgencia de tu caso y te muestra los huecos más adecuados automáticamente.</p>
+  <div class="cal-layout">
+    <div>
+      <div class="cal-box">
+        <div class="cal-header">
+          <button class="cal-nav" onclick="changeMonth(-1)">←</button>
+          <div class="cal-month" id="cal-month-label">Julio 2025</div>
+          <button class="cal-nav" onclick="changeMonth(1)">→</button>
+        </div>
+        <div class="cal-days-header">
+          <div class="cal-day-name">L</div><div class="cal-day-name">M</div><div class="cal-day-name">X</div>
+          <div class="cal-day-name">J</div><div class="cal-day-name">V</div><div class="cal-day-name">S</div><div class="cal-day-name">D</div>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <div class="cal-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#fee2e2;border:1px solid #fca5a5"></div>Urgente disponible</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--teal-light);border:1px solid var(--teal)"></div>Disponible</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#f3f4f6;border:1px solid #e5e7eb"></div>Ocupado</div>
+        </div>
+      </div>
+      <div class="time-slots" id="time-slots-box" style="display:none;margin-top:16px">
+        <div class="cal-box">
+          <div class="time-label">Horas disponibles — <span id="selected-date-label"></span></div>
+          <div class="slots-grid" id="slots-grid"></div>
+        </div>
+      </div>
+    </div>
+    <div class="cal-confirm">
+      <h3>Resumen de tu cita</h3>
+      <div id="confirm-details">
+        <div class="confirm-row"><span class="confirm-icon">📅</span><span id="conf-fecha" style="color:var(--gray)">Selecciona un día</span></div>
+        <div class="confirm-row"><span class="confirm-icon">🕐</span><span id="conf-hora" style="color:var(--gray)">Selecciona una hora</span></div>
+        <div class="confirm-row"><span class="confirm-icon">🦷</span><span id="conf-trat" style="color:var(--gray)">Sin tratamiento seleccionado</span></div>
+      </div>
+      <div class="ai-badge" id="ai-badge">
+        <strong>🤖 Análisis de IA</strong>
+        Selecciona una fecha para ver el análisis automático de tu caso
+      </div>
+      <button class="btn-form" id="btn-confirmar" style="margin-top:16px;opacity:.4;pointer-events:none" onclick="confirmarCita()">Confirmar cita →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-label">Preguntas frecuentes</div>
+  <h2>Todo lo que necesitas saber</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Tenéis primera visita gratuita? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a"><p>Sí. La primera consulta de revisión y diagnóstico es completamente gratuita y sin compromiso. Incluye exploración visual, consejo personalizado y presupuesto detallado de cualquier tratamiento que necesites.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Ofrecéis financiación? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a"><p>Sí, ofrecemos financiación sin intereses hasta 24 meses para tratamientos superiores a 500€. También trabajamos con las principales aseguradoras. Usa nuestra calculadora de cuotas para ver exactamente cuánto pagarías al mes.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Cuánto tarda un implante desde el principio hasta el final? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a"><p>El proceso completo suele durar entre 3 y 6 meses, dependiendo del estado del hueso y el tipo de implante. Sin embargo, colocamos una corona provisional para que nunca estés sin diente durante el proceso.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Atiendéis urgencias el mismo día? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a"><p>Sí. Reservamos huecos diarios para urgencias. Si tienes dolor intenso, infección o fractura, nuestro sistema de IA detecta la urgencia de tu caso y te asigna la primera cita disponible del día, incluso fuera del horario habitual.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Habláis inglés, francés o alemán? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a"><p>Sí. Atendemos en español, catalán, inglés, francés, alemán e italiano. Nuestro sistema de WhatsApp también responde automáticamente en tu idioma, las 24 horas.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Cómo puedo contactar fuera del horario de clínica? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a"><p>A través de nuestro WhatsApp (el botón verde abajo a la derecha). Nuestro sistema responde en menos de 30 segundos a cualquier hora, resuelve tus dudas y puede agendarte una cita directamente desde el chat.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCIACIÓN -->
+<section class="financiacion" id="financiacion">
+  <div class="section-label">Simulador de cuotas</div>
+  <h2>Calcula tu pago mensual</h2>
+  <p class="section-sub">Sin sorpresas. Elige el importe y los plazos y ve exactamente lo que pagarías cada mes.</p>
+  <div class="fin-layout">
+    <div class="fin-box">
+      <div class="fin-group">
+        <label>Importe del tratamiento</label>
+        <div class="fin-value" id="fin-importe">1.200€</div>
+        <input type="range" class="fin-slider" min="300" max="8000" value="1200" step="100" oninput="calcFin(this.value)">
+      </div>
+      <div class="fin-group">
+        <label>Elige tu plan de pago</label>
+        <div class="cuotas-grid" id="cuotas-grid"></div>
+      </div>
+    </div>
+    <div>
+      <div style="background:var(--teal-light);border-radius:var(--radius);padding:28px;border-left:4px solid var(--teal)">
+        <div style="font-size:13px;color:var(--gray);margin-bottom:4px">Cuota mensual estimada</div>
+        <div id="fin-cuota" style="font-family:'Playfair Display',serif;font-size:48px;color:var(--navy);font-weight:600">100€</div>
+        <div style="font-size:13px;color:var(--gray);margin-top:4px" id="fin-detail">12 meses · Sin intereses</div>
+        <div style="margin-top:20px;font-size:13px;color:var(--text);line-height:1.6">✅ Sin intereses ni comisiones<br>✅ Aprobación inmediata<br>✅ Solo necesitas tu DNI<br>✅ Primera cuota al mes siguiente</div>
+        <button class="btn-form" style="margin-top:20px" onclick="document.getElementById('cita').scrollIntoView({behavior:'smooth'})">Solicitar financiación →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonios">
+  <div class="section-label">Lo que dicen nuestros pacientes</div>
+  <h2>Más de 2.400 sonrisas transformadas</h2>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>"Llevaba años posponiendo el implante por miedo. Mandé un WhatsApp a las 11 de la noche y me respondieron al momento. Al día siguiente tenía cita. El trato fue increíble."</p>
+      <div class="test-author"><div class="test-avatar">MR</div><div><div class="test-name">María R.</div><div class="test-role">Implante dental · Tarragona</div></div></div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>"I contacted them on a Sunday and they replied in seconds. My English was no problem at all. The treatment was excellent and the price was very fair. Highly recommended."</p>
+      <div class="test-author"><div class="test-avatar">JK</div><div><div class="test-name">James K.</div><div class="test-role">Teeth whitening · UK tourist</div></div></div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>"Usé el formulario de la web y me detectaron que mi caso era urgente. Me llamaron en 20 minutos. Tenía una infección y me atendieron ese mismo día. Profesionalidad al 100%."</p>
+      <div class="test-author"><div class="test-avatar">CA</div><div><div class="test-name">Carlos A.</div><div class="test-role">Urgencia dental · Reus</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEÑAS AUTOMÁTICAS -->
+<section class="resenas">
+  <div class="section-label">Sistema de reseñas</div>
+  <h2>Así pedimos tu opinión automáticamente</h2>
+  <p class="section-sub">48 horas después de tu visita, recibes un mensaje personalizado. Sin molestar, en el momento justo.</p>
+  <div class="resena-flow">
+    <div class="resena-step"><div class="resena-icon">🦷</div><div class="resena-title">Fin de la visita</div><div class="resena-sub">El sistema registra que has sido atendido</div></div>
+    <div class="resena-step"><div class="resena-icon">⏱️</div><div class="resena-title">48 horas después</div><div class="resena-sub">WhatsApp automático con tu nombre</div></div>
+    <div class="resena-step"><div class="resena-icon">💬</div><div class="resena-title">Mensaje personalizado</div><div class="resena-sub">"¿Cómo fue tu experiencia, María?"</div></div>
+    <div class="resena-step"><div class="resena-icon">⭐</div><div class="resena-title">Un clic a Google</div><div class="resena-sub">Enlace directo a tu ficha de Google</div></div>
+    <div class="resena-step"><div class="resena-icon">📈</div><div class="resena-title">Más visibilidad</div><div class="resena-sub">Más reseñas = mejor posición en Maps</div></div>
+  </div>
+</section>
+
+<!-- MAPA -->
+<section class="mapa-section" id="ubicacion">
+  <div class="section-label">Dónde estamos</div>
+  <h2>Clínica Dental Mediterrànea</h2>
+  <p class="section-sub">Céntricos, con parking a 2 minutos y acceso en transporte público.</p>
+  <div class="mapa-box">
+    <div class="mapa-placeholder">
+      🗺️
+      <div class="mapa-pin">📍</div>
+    </div>
+    <div class="mapa-info">
+      <div class="mapa-data"><div class="mapa-data-label">Dirección</div><div class="mapa-data-val">Rambla Nova 42, Tarragona</div></div>
+      <div class="mapa-data"><div class="mapa-data-label">Horario</div><div class="mapa-data-val">L-V 9:00–20:00 · S 9:00–14:00</div></div>
+      <div class="mapa-data"><div class="mapa-data-label">Teléfono</div><div class="mapa-data-val">977 XXX XXX</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>¿Listo para empezar?</h2>
+  <p>Primera visita gratuita. Sin compromiso. Respuesta garantizada en menos de 2 minutos.</p>
+  <div class="cta-btns">
+    <button class="btn-white" onclick="document.getElementById('cita').scrollIntoView({behavior:'smooth'})">📅 Reservar cita ahora</button>
+    <button class="btn-outline" onclick="openWaChat()" style="color:white">💬 Hablar por WhatsApp</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Clínica Dental Mediterrànea</span> — Demo web · Ecosistema digital por <span>[Tu nombre]</span></p>
+  <p style="margin-top:6px;font-size:11px">Esta web es una demostración ficticia con fines comerciales</p>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" onclick="openWaChat()">
+  💬
+  <span class="wa-tooltip">Respuesta en 30 segundos</span>
+</a>
+
+<!-- URGENCIA POPUP -->
+<div class="urgencia-popup" id="urgencia-popup">
+  <button class="popup-close" onclick="closePopup()">✕</button>
+  <div class="popup-title">🚨 ¿Tienes dolor dental?</div>
+  <div class="popup-sub">Atendemos urgencias el mismo día. Escríbenos ahora y te llamamos en 15 minutos.</div>
+  <button class="popup-btn" onclick="activateUrgency()">Contactar urgencias →</button>
+</div>
+
+<!-- WHATSAPP CHAT SIMULADO -->
+<div id="wa-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;align-items:flex-end;justify-content:flex-end;padding:24px">
+  <div style="background:var(--white);border-radius:16px;width:320px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3)">
+    <div class="wa-header" style="border-radius:0">
+      <div class="wa-avatar">🦷</div>
+      <div><div class="wa-name">Dental Mediterrànea</div><div class="wa-status">🟢 En línea ahora</div></div>
+      <button onclick="closeWaChat()" style="margin-left:auto;background:none;border:none;color:white;font-size:18px;cursor:pointer">✕</button>
+    </div>
+    <div class="wa-chat" id="wa-chat-messages">
+      <div class="wa-msg bot">¡Hola! 👋 Bienvenido/a a Clínica Dental Mediterrànea. Soy el asistente automático, disponible 24h.<br><br>¿En qué puedo ayudarte hoy?<span class="time">ahora</span></div>
+      <div class="wa-options" id="wa-options">
+        <div class="wa-option-btn" onclick="waSelect('💉 Tengo dolor o urgencia')">💉 Tengo dolor o urgencia</div>
+        <div class="wa-option-btn" onclick="waSelect('💰 Quiero saber precios')">💰 Quiero saber precios</div>
+        <div class="wa-option-btn" onclick="waSelect('📅 Reservar una cita')">📅 Reservar una cita</div>
+        <div class="wa-option-btn" onclick="waSelect('🌍 I speak English')">🌍 I speak English</div>
+      </div>
+    </div>
+    <div style="padding:8px">
+      <div class="wa-input-area">
+        <input class="wa-input" placeholder="Escribe un mensaje..." id="wa-input-text" onkeydown="if(event.key==='Enter')waSend()">
+        <button class="wa-send" onclick="waSend()">➤</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CALCULADORA ──────────────────────────────────────────
+const precios = {
+  revision:{base:59,por_pieza:false,label:'Revisión + Limpieza',extra:'Incluye radiografía digital'},
+  blanqueamiento:{base:280,por_pieza:false,label:'Blanqueamiento',extra:'Resultado visible en 1 sesión'},
+  endodoncia:{base:380,por_pieza:true,label:'Endodoncia',extra:'Por conducto, anestesia incluida'},
+  carilla:{base:320,por_pieza:true,label:'Carilla dental',extra:'Cerámica de alta estética'},
+  implante:{base:980,por_pieza:true,label:'Implante + corona',extra:'Titanio grado médico + cerámica'},
+  ortodoncia:{base:2400,por_pieza:false,label:'Ortodoncia invisible',extra:'Alineadores Invisalign completo'}
+};
+function calcular(){
+  const t=document.getElementById('calc-tratamiento').value;
+  const p=parseInt(document.getElementById('calc-piezas').value);
+  const u=parseFloat(document.getElementById('calc-urgencia').value);
+  const s=parseFloat(document.getElementById('calc-seguro').value);
+  document.getElementById('piezas-val').textContent=p;
+  document.getElementById('piezas-group').style.display=precios[t].por_pieza?'block':'none';
+  const base=precios[t].base*(precios[t].por_pieza?p:1)*s;
+  const low=Math.round(base*0.9);
+  const high=Math.round(base*1.15*u);
+  document.getElementById('result-price').textContent=low+'€';
+  document.getElementById('result-range').textContent=precios[t].por_pieza&&p>1?'Rango: '+low+'€ – '+high+'€':'Precio orientativo';
+  document.getElementById('result-items').innerHTML=`
+    <div class="result-item"><span>${precios[t].label}</span><span>${low}€</span></div>
+    <div class="result-item"><span>Consulta inicial</span><span>Gratuita</span></div>
+    <div class="result-item"><span>${precios[t].extra}</span><span>✓ Incluido</span></div>
+    <div class="result-item" style="font-weight:600"><span>Total estimado</span><span>${low}€</span></div>`;
+}
+calcular();
+
+// ── SELECTOR TRATAMIENTO (desde cards) ──────────────────
+function selectTratamiento(t){
+  if(precios[t]){
+    document.getElementById('calc-tratamiento').value=t;
+    calcular();
+    document.getElementById('calculadora').scrollIntoView({behavior:'smooth'});
+  }
+}
+
+// ── SLIDER ANTES/DESPUÉS ────────────────────────────────
+let dragging=false;
+function startDrag(e){
+  dragging=true;
+  moveDrag(e);
+  document.addEventListener('mousemove',moveDrag);
+  document.addEventListener('mouseup',()=>{dragging=false;document.removeEventListener('mousemove',moveDrag)});
+  document.addEventListener('touchmove',moveDrag);
+  document.addEventListener('touchend',()=>{dragging=false});
+}
+function moveDrag(e){
+  if(!dragging)return;
+  const sl=document.getElementById('slider');
+  const rect=sl.getBoundingClientRect();
+  const x=((e.clientX||e.touches[0].clientX)-rect.left)/rect.width*100;
+  const pct=Math.min(95,Math.max(5,x));
+  document.getElementById('slider-clip').style.width=pct+'%';
+  document.getElementById('slider-div').style.left=pct+'%';
+}
+
+// ── FAQ ──────────────────────────────────────────────────
+function toggleFaq(btn){
+  const item=btn.parentElement;
+  document.querySelectorAll('.faq-item.open').forEach(i=>{if(i!==item)i.classList.remove('open')});
+  item.classList.toggle('open');
+}
+
+// ── FORMULARIO IA ────────────────────────────────────────
+let formData={motivo:'',urgencia:'',paciente:''};
+function selectOption(el,val){
+  const step=el.closest('.form-step');
+  step.querySelectorAll('.form-option').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  const stepId=step.id;
+  if(stepId==='step1')formData.motivo=val;
+  if(stepId==='step2')formData.urgencia=val;
+  if(stepId==='step3')formData.paciente=val;
+  const btn=step.querySelector('button.btn-form');
+  btn.style.opacity='1';btn.style.pointerEvents='auto';
+}
+function nextStep(n){
+  document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step'+n).classList.add('active');
+  for(let i=1;i<=4;i++){
+    document.getElementById('p'+i).classList.toggle('done',i<=n);
+  }
+}
+function submitForm(){
+  const nombre=document.getElementById('f-nombre').value||'Paciente';
+  let urgLevel='baja';let urgText='Baja';let urgColor='urgency-baja';
+  if(formData.urgencia==='hoy'||formData.motivo==='dolor'){urgLevel='alta';urgText='Alta';urgColor='urgency-alta';}
+  else if(formData.urgencia==='semana'){urgLevel='media';urgText='Media';urgColor='urgency-media';}
+  document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step-result').classList.add('active');
+  document.getElementById('urgency-result').innerHTML=`
+    <div class="urgency-badge ${urgColor}">🤖 Urgencia detectada: ${urgText}</div>
+    <p style="font-size:13px;color:var(--gray);margin-top:8px">${urgLevel==='alta'?'Tu caso ha sido marcado como prioritario. Te llamamos en menos de 30 minutos.':urgLevel==='media'?'Te contactamos hoy o mañana para confirmar tu cita.':'Te llamamos en las próximas 2 horas en horario de clínica.'}</p>`;
+}
+
+// ── CALENDARIO ──────────────────────────────────────────
+let selMonth=new Date().getMonth(),selYear=new Date().getFullYear();
+let selDay=null,selSlot=null;
+const months=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const urgentDays=[3,7,12];
+const takenSlots={'09:00':true,'11:30':true,'16:00':true};
+function renderCal(){
+  const first=new Date(selYear,selMonth,1).getDay();
+  const offset=(first===0?6:first-1);
+  const days=new Date(selYear,selMonth+1,0).getDate();
+  const today=new Date();
+  document.getElementById('cal-month-label').textContent=months[selMonth]+' '+selYear;
+  let html='';
+  for(let i=0;i<offset;i++)html+=`<div class="cal-day empty"></div>`;
+  for(let d=1;d<=days;d++){
+    const date=new Date(selYear,selMonth,d);
+    const isPast=date<new Date(today.getFullYear(),today.getMonth(),today.getDate());
+    const isToday=d===today.getDate()&&selMonth===today.getMonth()&&selYear===today.getFullYear();
+    const isUrgent=urgentDays.includes(d)&&!isPast;
+    const isSel=d===selDay;
+    const cls=isPast?'past':isUrgent?'urgent-slot':isSel?'selected':'available';
+    html+=`<div class="cal-day ${cls}${isToday?' today':''}" onclick="${isPast?'':'selectDay('+d+')'}">  ${d}</div>`;
+  }
+  document.getElementById('cal-grid').innerHTML=html;
+}
+function changeMonth(dir){selMonth+=dir;if(selMonth>11){selMonth=0;selYear++;}if(selMonth<0){selMonth=11;selYear--;}selDay=null;selSlot=null;renderCal();document.getElementById('time-slots-box').style.display='none';}
+function selectDay(d){
+  selDay=d;selSlot=null;renderCal();
+  const dateStr=d+' de '+months[selMonth]+' de '+selYear;
+  document.getElementById('selected-date-label').textContent=dateStr;
+  document.getElementById('conf-fecha').textContent=dateStr;
+  document.getElementById('conf-fecha').style.color='var(--navy)';
+  const isUrgent=urgentDays.includes(d);
+  const slots=isUrgent?['08:00','08:30','09:30','10:00','15:30','16:30']:['09:00','10:00','10:30','11:00','12:00','16:00','16:30','17:00','18:00'];
+  let html='';
+  slots.forEach(s=>{const taken=takenSlots[s];html+=`<div class="slot${taken?' taken':''}" onclick="${taken?'':'selectSlot(this,\''+s+'\')'}">${s}${taken?' ✗':''}</div>`;});
+  document.getElementById('slots-grid').innerHTML=html;
+  document.getElementById('time-slots-box').style.display='block';
+  const badge=document.getElementById('ai-badge');
+  badge.innerHTML=isUrgent?`<strong>🤖 Análisis de IA — Caso URGENTE</strong>He detectado disponibilidad prioritaria para el día ${d}. Estos huecos están reservados para urgencias. Si tienes dolor, selecciona uno de los primeros turnos.`:`<strong>🤖 Análisis de IA</strong>Cita estándar disponible el ${d} de ${months[selMonth]}. Selecciona la hora que mejor te convenga según tu disponibilidad.`;
+}
+function selectSlot(el,slot){
+  selSlot=slot;
+  document.querySelectorAll('.slot:not(.taken)').forEach(s=>s.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('conf-hora').textContent=slot+'h';
+  document.getElementById('conf-hora').style.color='var(--navy)';
+  document.getElementById('conf-trat').textContent=document.getElementById('calc-tratamiento')?document.getElementById('calc-tratamiento').options[document.getElementById('calc-tratamiento').selectedIndex].text:'Consulta general';
+  document.getElementById('conf-trat').style.color='var(--navy)';
+  const btn=document.getElementById('btn-confirmar');
+  btn.style.opacity='1';btn.style.pointerEvents='auto';
+}
+function confirmarCita(){
+  alert('✅ ¡Cita confirmada!\n\n📅 '+document.getElementById('conf-fecha').textContent+'\n🕐 '+document.getElementById('conf-hora').textContent+'\n\nRecibirás un WhatsApp de confirmación en breve.');
+}
+renderCal();
+
+// ── FINANCIACIÓN ────────────────────────────────────────
+let finMeses=12,finImporte=1200;
+const plazosBtns=[{m:6,label:'6 meses'},{m:12,label:'12 meses'},{m:18,label:'18 meses'},{m:24,label:'24 meses'}];
+function renderCuotas(){
+  let html='';
+  plazosBtns.forEach(p=>{
+    const cuota=Math.round(finImporte/p.m);
+    html+=`<div class="cuota-card${p.m===finMeses?' active':''}" onclick="selectPlazo(${p.m})">
+      <div class="cuota-meses">${p.label}</div>
+      <div class="cuota-importe">${cuota}€/mes</div>
+      <div class="cuota-total">Total: ${finImporte}€</div>
+    </div>`;
+  });
+  document.getElementById('cuotas-grid').innerHTML=html;
+  document.getElementById('fin-cuota').textContent=Math.round(finImporte/finMeses)+'€';
+  document.getElementById('fin-detail').textContent=finMeses+' meses · Sin intereses';
+}
+function calcFin(v){
+  finImporte=parseInt(v);
+  document.getElementById('fin-importe').textContent=finImporte+'€';
+  renderCuotas();
+}
+function selectPlazo(m){finMeses=m;renderCuotas();}
+renderCuotas();
+
+// ── WHATSAPP BOT SIMULADO ────────────────────────────────
+const waResponses={
+  '💉 Tengo dolor o urgencia':'🚨 Lo sentimos mucho. Vamos a atenderte con la máxima prioridad.\n\nGuardamos huecos de urgencia cada día. ¿Puedes decirnos en qué zona tienes el dolor?\n\n1️⃣ Dolor intenso (necesito hoy)\n2️⃣ Molestia moderada (esta semana)',
+  '💰 Quiero saber precios':'Claro, con mucho gusto 😊\n\n💶 Nuestros precios orientativos:\n• Revisión + limpieza: 59€\n• Implante dental: desde 950€\n• Blanqueamiento: desde 280€\n• Ortodoncia invisible: desde 2.400€\n\n¿Te gustaría que te preparásemos un presupuesto personalizado gratuito?',
+  '📅 Reservar una cita':'Perfecto 📅\n\nTenemos disponibilidad esta semana:\n• Mañana a las 10:00h\n• Jueves a las 17:30h\n• Viernes a las 09:00h\n\n¿Alguna de estas te va bien? También puedes reservar directamente en nuestra web 👆',
+  '🌍 I speak English':'Hello! 👋 No problem at all, we speak English perfectly.\n\nHow can we help you today?\n• 🦷 I have a dental emergency\n• 💰 I need a price quote\n• 📅 I want to book an appointment',
+  'default':'Gracias por tu mensaje 😊 Un miembro de nuestro equipo lo revisará en breve.\n\nRecuerda que también puedes reservar cita directamente en nuestra web.',
+};
+function openWaChat(){
+  const ov=document.getElementById('wa-overlay');
+  ov.style.display='flex';
+  setTimeout(()=>{ov.querySelector('div').style.transform='translateY(0)'},10);
+}
+function closeWaChat(){document.getElementById('wa-overlay').style.display='none';}
+function waSelect(opt){
+  document.getElementById('wa-options').style.display='none';
+  addWaMsg(opt,'user');
+  const typing=addTyping();
+  setTimeout(()=>{
+    typing.remove();
+    const resp=waResponses[opt]||waResponses['default'];
+    addWaMsg(resp,'bot');
+  },1200);
+}
+function waSend(){
+  const inp=document.getElementById('wa-input-text');
+  const txt=inp.value.trim();
+  if(!txt)return;
+  addWaMsg(txt,'user');inp.value='';
+  const typing=addTyping();
+  setTimeout(()=>{typing.remove();addWaMsg(waResponses['default'],'bot');},1000);
+}
+function addWaMsg(text,type){
+  const chat=document.getElementById('wa-chat-messages');
+  const div=document.createElement('div');
+  div.className='wa-msg '+type;
+  div.innerHTML=text.replace(/\n/g,'<br>')+'<span class="time">ahora</span>';
+  chat.appendChild(div);
+  chat.scrollTop=chat.scrollHeight;
+  return div;
+}
+function addTyping(){
+  const chat=document.getElementById('wa-chat-messages');
+  const div=document.createElement('div');
+  div.className='wa-typing';div.style.display='flex';
+  div.innerHTML='<span></span><span></span><span></span>';
+  chat.appendChild(div);chat.scrollTop=chat.scrollHeight;
+  return div;
+}
+
+// ── URGENCIA POPUP ───────────────────────────────────────
+setTimeout(()=>{document.getElementById('urgencia-popup').classList.add('show');},8000);
+function closePopup(){document.getElementById('urgencia-popup').classList.remove('show');}
+function activateUrgency(){
+  closePopup();
+  document.getElementById('cita').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>{
+    if(urgentDays.length>0)selectDay(urgentDays[0]);
+  },800);
+}
+</script>
+</body>
+</html>
